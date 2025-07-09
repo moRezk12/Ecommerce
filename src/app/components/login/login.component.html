@@ -1,0 +1,66 @@
+<section class="w-80 mx-auto shadow rounded p-4 my-3 bg-main0light ">
+  <div class="container h-100  mt-2">
+    <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+      <p class="text-center fs-4 fw-bold mb-5 mx-md-4 m-2 text-success ">Login Now</p>
+      <div *ngIf="errMsg" class=" text-danger text-center my-2 " role="alert">
+        {{errMsg}}
+      </div>
+
+
+
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-envelope fa-lg me-3 mt-3 pt-3 fa-fw text-success"></i>
+        <div class="form-outline flex-fill mb-0">
+          <label class="form-label" for="email">Your Email</label>
+          <input class="form-control" formControlName="email" type="email" id="email" />
+
+          <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+            <p class="text-danger mt-2" *ngIf="loginForm.get('email')?.getError('required')">Email Is Required</p>
+            <p class="text-danger mt-2" *ngIf="loginForm.get('email')?.getError('email')">Enter vaid Email</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="d-flex flex-row align-items-center mb-4">
+        <i class="fas fa-lock fa-lg me-3 mt-3 pt-3 fa-fw text-success "></i>
+
+        <div class="form-outline flex-fill mb-0 position-relative">
+          <label class="form-label" for="password">Password</label>
+
+          <input class="form-control" formControlName="password" [type]="showPassword ? 'text' : 'password'"
+            id="password" />
+
+          <!-- 👁️ أيقونة إظهار/إخفاء الباسورد -->
+          <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePassword()"
+            style="position: absolute; top: 43px; right: 15px; cursor: pointer; color: #6c757d;"></i>
+
+          <!-- رسائل الخطأ -->
+          <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+            <p class="text-danger mt-2" *ngIf="loginForm.get('password')?.getError('required')">Password Is Required</p>
+            <p class="text-danger mt-2" *ngIf="loginForm.get('password')?.getError('pattern')">
+              Password must have a capital letter, lowercase letter, number, and special character
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="d-flex justify-content-between align-items-center">
+
+        <button [disabled]="loginForm.invalid" type="submit" class="main-btn  mt-2">
+          Login
+          <span> <i *ngIf="spinner" class="fas fa-spin fa-spinner"></i> </span>
+        </button>
+
+        <a routerLink="/forgot" class="link-primary"> Forgot Password </a>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+</section>

@@ -1,0 +1,26 @@
+<section class="w-75 mx-auto rounded shadow p-3 bg-main-light mb-3 ">
+  <form [formGroup]=" orderForm" (ngSubmit)="handelForm()">
+    <h2 class="text-center py-3 fs-4 text-main">CHECK OUT SESSION</h2>
+
+    <div class="form-item m-2">
+      <label class="my-1" for="details">Details : </label>
+      <input class="form-control" type="text" id="details" formControlName="details" placeholder=" Enter Details ..">
+    </div>
+
+    <div class="form-item m-2">
+      <label class="my-1" for="phone">phone : </label>
+      <input class="form-control" type="tel" id="phone" formControlName="phone" placeholder="Enter Your phone : ">
+    </div>
+
+    <div class="form-item m-2">
+      <label class="my-1" for="city">city : </label>
+      <input class="form-control" type="text" id="city" formControlName="city" placeholder=" Enter Your city : ">
+    </div>
+
+    <button class="main-btn m-2" (click)="handelForm()">Check out
+      <!-- <span> <i *ngIf="spinner" class="fas fa-spin fa-spinner"></i> </span> -->
+
+    </button>
+
+  </form>
+</section>
